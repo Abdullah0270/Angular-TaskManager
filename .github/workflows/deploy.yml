@@ -3,7 +3,7 @@ name: Deploy Angular to GitHub Pages
 on:
   push:
     branches:
-      - main  # Runs when code is pushed to main
+      - main
 
 jobs:
   build:
@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18  # Recommended for Angular 16+
+          node-version: 18
 
       - name: Install dependencies
         run: npm ci
@@ -28,5 +28,6 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages  # Deploys to the gh-pages branch
-          folder: dist/task-manager  # Ensure this matches your Angular output directory
+          branch: gh-pages
+          folder: dist/task-manager
+          token: ${{ secrets.GITHUB_TOKEN }}  
